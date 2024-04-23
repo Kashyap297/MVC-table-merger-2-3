@@ -1,15 +1,21 @@
 const express = require('express')
 const dbConnection = require('./config/db')
-const Config = require('./config')
+const Config = require('./config');
+const catRouter = require('./router/categoryRoute');
+const subCatRouter = require('./router/subCategoryRoute');
 const app = express()
 
 const PORT = Config.PORT || 5000;
 
+// urlencoded
+app.use(express.urlencoded({ extended: false }))
+
 // dbConnection
 dbConnection()
 
-
 // routes
+app.use('/category', catRouter)
+app.use('/subcategory', subCatRouter)
 
 
 // listen
