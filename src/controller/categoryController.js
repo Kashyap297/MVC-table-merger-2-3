@@ -3,7 +3,12 @@ const categoryModel = require("../models/categoryModel")
 const categoryController = {
     get: async (req, res) => {
         try {
-            const item = await categoryModel.find().populate('subCategoryId')
+            const item = await categoryModel.find().populate({
+                path: 'subCategoryId',
+                populate: {
+                    path: 'extraCategoryId'
+                }
+            })
             res.send(item)
         } catch (error) {
             console.log(error);
