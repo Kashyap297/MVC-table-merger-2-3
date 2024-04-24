@@ -8,6 +8,8 @@ const app = express()
 
 const PORT = Config.PORT || 5000;
 
+app.set('view engine', 'ejs');
+
 // urlencoded
 app.use(express.urlencoded({ extended: false }))
 
@@ -19,6 +21,9 @@ app.use('/category', catRouter)
 app.use('/subcategory', subCatRouter)
 app.use('/extracategory', extCatRouter)
 
+app.get('/', (req, res) => {
+    res.render('Pages/index')
+})
 
 // listen
 app.listen(PORT, (err) => {
