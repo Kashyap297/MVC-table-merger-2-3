@@ -4,6 +4,9 @@ const Config = require('./config');
 const catRouter = require('./router/categoryRoute');
 const subCatRouter = require('./router/subCategoryRoute');
 const extCatRouter = require('./router/extraCategoryRoute');
+
+var cors = require('cors')
+
 const app = express()
 
 const PORT = Config.PORT || 5000;
@@ -13,6 +16,7 @@ app.set('views', 'src/views')
 
 // urlencoded
 app.use(express.urlencoded({ extended: false }))
+app.use(cors())
 
 // dbConnection
 dbConnection()
